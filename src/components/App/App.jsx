@@ -1,34 +1,29 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
-import { fetchContacts } from '../../redux/operations';
-import { Container, Title, SubTitle, Wrapper } from './App.styled';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
+import { fetchContacts, addContact } from '../../redux/contactsOps';
+import styles from './App.module.css';
 
 const App = () => {
-  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const handleAddContact = (contact) => {
+    dispatch(addContact(contact));
+  };
+
   return (
-    <Container>
-      <Title>Phonebook</Title>
-      <ContactForm />
-      <SubTitle>Contacts</SubTitle>
-      {contacts.length > 0 ? (
-        <Filter />
-      ) : (
-        <Wrapper>Your phonebook is empty. Add first contact!</Wrapper>
-      )}
-      {contacts.length > 0 && (
-        <ContactList />
-      )}
-    </Container>
+    <div className={styles.container}>
+      <h1>Книга контактів</h1>
+      <ContactForm onAddContact={handleAddContact} />
+      <Filter />
+      <ContactList />
+    </div>
   );
 };
 
