@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const filterSlice = createSlice({  
     name: 'filter',  
     initialState: {  
-        name: ''  
+        name: ''   
     },  
     reducers: {  
         setFilter(state, action) {  
-            state.name = action.payload;  
+            state.name = action.payload; 
         }  
     }  
 });  
 
-// Експортуємо дії та редюсер  
+// Експорт дій та редюсера  
 export const { setFilter } = filterSlice.actions;  
 export default filterSlice.reducer;
