@@ -10,7 +10,7 @@ const ContactList = () => {
 
   return (
     <ul className={styles.list}>
-      {contacts.map(({ id, name, phone }) => (
+      {contacts.map(({ id, name, number }) => (
         <li key={id} className={styles.item}>
           {name}: {phone}
           <button onClick={() => dispatch(deleteContact(id))}>Видалити</button>
